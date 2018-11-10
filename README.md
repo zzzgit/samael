@@ -1,2 +1,2 @@
-# magazine
+# samael
 utils for node.js

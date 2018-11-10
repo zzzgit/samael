@@ -1,0 +1,16 @@
+{
+  "name": "samael",
+  "version": "1.0.2",
+  "description": "utils for node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "src/main.js",
+  "author": "jonkee",
+  "license": "ISC",
+  "dependencies": {
+    "encoding": "^0.1.12",
+    "mkdirp": "^0.5.1",
+    "node-fetch": "^2.2.1"
+  }
+}
