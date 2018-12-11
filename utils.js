@@ -103,6 +103,34 @@ const checkRedirect = (url) => {
 	})
 }
 
+const random = (n) => {	// from 1 on
+	return Math.ceil(Math.random() * n)
+}
+
+const shuffle = (arr) => {
+	let n = arr.length
+	for (let i = 0, len = arr.length; i < len; i++) {
+		let t = i + random(n - 1 - i)
+		let temp = arr[i]
+		arr[i] = arr[t]
+		arr[t] = temp
+	}
+}
+
+const factorial = (num) => {
+	let result = num
+	if (num < 0) {
+		return -1
+	}
+	if (num === 0 || num === 1) {
+		return 1
+	}
+	while (num > 1) {
+		num--
+		result *= num
+	}
+	return result
+}
 
 module.exports = {
 	formatTimeRange,
@@ -110,5 +138,8 @@ module.exports = {
 	writeToFile,
 	readFromFile,
 	checkRedirect,
-	fetch
+	fetch,
+	random,
+	shuffle,
+	factorial
 }
