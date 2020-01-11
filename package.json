@@ -1,16 +1,29 @@
 {
   "name": "samael",
-  "version": "1.0.5",
+  "version": "1.0.30",
   "description": "utils for node.js",
+  "type": "commonjs",
+  "main": "built/lib/index.js",
+  "types": "built/t/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
   },
-  "main": "src/main.js",
+  "engines": {
+    "npm": ">=8.1.4",
+    "node": ">=16"
+  },
   "author": "jonkee",
   "license": "ISC",
   "dependencies": {
-    "encoding": "^0.1.12",
-    "mkdirp": "^0.5.1",
-    "node-fetch": "^2.2.1"
+    "encoding": "^0.1.13",
+    "mkdirp": "^1.0.4",
+    "node-fetch": "^3.1.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "rollup": "^2.60.0",
+    "rollup-plugin-ts": "^2.0.4",
+    "typescript": "^4.5.2"
   }
 }

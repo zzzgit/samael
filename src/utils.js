@@ -1,14 +1,13 @@
-const path = require("path")
-const fs = require("fs")
-const util = require('util')
-const mkdirp = require('mkdirp')
-const nodeFetch = require('node-fetch')
-const fetch = require("./src/fetch")
+import fetch from "./fetch"
+// const fetch = require("./fetch")
 
-const ensurePath = util.promisify(mkdirp)
-const appendFile = util.promisify(fs.appendFile)
-const writeFile = util.promisify(fs.writeFile)
-const readFile = util.promisify(fs.readFile)
+const path = require("path")
+const { appendFile, writeFile, readFile } = require('fs').promises
+// 現有原生API可否替代這個lib？
+const ensurePath = require('mkdirp')
+
+const nodeFetch = import('node-fetch').then(({ default: mdl }) => mdl).catch(err => Promise.resolve(err))
+ 
 
 const getQandR = (dividend, divisor) => {
 	let remainder = dividend % divisor
@@ -61,6 +60,15 @@ const appendToFile = (file, str) => {
 	})
 }
 
+const flipCoin = () => {
+	return randomInt(999) %2 
+}
+
+// unreasonable
+const importESModule2Common = (moduleName) => {
+	return import(moduleName).then(({ default: mdl }) => mdl).catch(err => Promise.resolve(err))
+}
+
 const writeToFile = (file, str) => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return writeFile(file, str, "utf8")
@@ -103,14 +111,28 @@ const checkRedirect = (url) => {
 	})
 }
 
-const random = (n) => {	// from 1 on
-	return Math.ceil(Math.random() * n)
+const randomInt = (n, max) => {	// 一個參數，from 0 on, n is not included，兩個參數，all included
+	if(max == undefined){
+		return Math.floor(Math.random() * n)
+	}
+	let min = n
+	min = Math.ceil(min)
+	max = Math.floor(max)
+	return min + Math.floor(Math.random() * (max - min + 1)) 
+}
+
+const random = (n, max) => {
+	if (max == undefined) {
+		return Math.random() * n
+	}
+	let min = n
+	return min + Math.random() * (max - min )  
 }
 
 const shuffle = (arr) => {
 	let n = arr.length
-	for (let i = 0, len = arr.length; i < len; i++) {
-		let t = i + random(n - 1 - i)
+	for (let i = 0, len = arr.length-1; i < len; i++) {
+		let t = i + random(n - i - 1) + 1
 		let temp = arr[i]
 		arr[i] = arr[t]
 		arr[t] = temp
@@ -132,14 +154,29 @@ const factorial = (num) => {
 	return result
 }
 
-module.exports = {
+const getCounter =  () =>{
+	let counter = 0
+	return function () { 
+		counter += 1 
+		return counter
+	}
+}
+
+
+
+
+export default {
 	formatTimeRange,
 	appendToFile,
 	writeToFile,
 	readFromFile,
 	checkRedirect,
 	fetch,
+	importESModule2Common,
 	random,
+	randomInt,
 	shuffle,
-	factorial
+	flipCoin,
+	factorial,
+	getCounter
 }

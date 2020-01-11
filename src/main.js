@@ -1,2 +1,3 @@
+import utils from "./utils" 
 
-module.exports = require("../utils")
+export default utils
