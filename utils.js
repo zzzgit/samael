@@ -103,8 +103,22 @@ const checkRedirect = (url) => {
 	})
 }
 
-const random = (n) => {	// from 0 on, n is not included
-	return Math.floor(Math.random() * n)
+const randomInt = (n, max) => {	// 一個參數，from 0 on, n is not included，兩個參數，all included
+	if(max == undefined){
+		return Math.floor(Math.random() * n)
+	}
+	let min = n
+	min = Math.ceil(min)
+	max = Math.floor(max)
+	return min + Math.floor(Math.random() * (max - min + 1)) 
+}
+
+const random = (n, max) => {
+	if (max == undefined) {
+		return Math.random() * n
+	}
+	let min = n
+	return min + Math.random() * (max - min )  
 }
 
 const shuffle = (arr) => {
@@ -140,6 +154,7 @@ module.exports = {
 	checkRedirect,
 	fetch,
 	random,
+	randomInt,
 	shuffle,
 	factorial
 }
