@@ -9,8 +9,8 @@
   "author": "jonkee",
   "license": "ISC",
   "dependencies": {
-    "encoding": "^0.1.12",
-    "mkdirp": "^0.5.1",
-    "node-fetch": "^2.2.1"
+    "encoding": "^0.1.13",
+    "mkdirp": "^1.0.4",
+    "node-fetch": "^3.0.0"
   }
 }

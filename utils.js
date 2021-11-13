@@ -103,14 +103,14 @@ const checkRedirect = (url) => {
 	})
 }
 
-const random = (n) => {	// from 1 on
-	return Math.ceil(Math.random() * n)
+const random = (n) => {	// from 0 on, n is not included
+	return Math.floor(Math.random() * n)
 }
 
 const shuffle = (arr) => {
 	let n = arr.length
-	for (let i = 0, len = arr.length; i < len; i++) {
-		let t = i + random(n - 1 - i)
+	for (let i = 0, len = arr.length-1; i < len; i++) {
+		let t = i + random(n - i - 1) + 1
 		let temp = arr[i]
 		arr[i] = arr[t]
 		arr[t] = temp
