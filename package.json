@@ -18,12 +18,12 @@
   "dependencies": {
     "encoding": "^0.1.13",
     "mkdirp": "^1.0.4",
-    "node-fetch": "^3.1.0"
+    "node-fetch": "^3.2.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
-    "rollup": "^2.60.0",
-    "rollup-plugin-ts": "^2.0.4",
-    "typescript": "^4.5.2"
+    "rollup": "^2.67.2",
+    "rollup-plugin-ts": "^2.0.5",
+    "typescript": "^4.5.5"
   }
 }
