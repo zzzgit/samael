@@ -1,3 +1,5 @@
 import utils from "./utils" 
 
-export default utils
+let _hack={}
+
+export { utils as default, _hack }
