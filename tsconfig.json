@@ -1,10 +1,4 @@
 {
-    "include": [
-        "src/**/*"
-    ],
-    "exclude": [
-        "node_modules"
-    ],
     "compilerOptions": {
         "allowJs": true,
         "emitDeclarationOnly": true,
@@ -20,5 +14,11 @@
         "declaration": true,
         "outDir": "./built/lib/",
         "declarationDir": "./built/t/",
-    }
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
 }

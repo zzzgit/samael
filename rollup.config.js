@@ -2,13 +2,14 @@
 const path = require("path")
 const pkg = require("./package.json")
 const ts = require("rollup-plugin-ts")
+// const ts = require("rollup-plugin-typescript2")
 
 
 module.exports = {
-	input: path.resolve(__dirname, "./src/main.js"),
+	input: path.resolve(__dirname, "./src/main.ts"),
 	output: {
 		file: path.resolve(__dirname, pkg.main),
-		format: "cjs",
+		format: "es",
 		name: "samael",
 		banner: "/* eslint-disable */",
 	},
@@ -18,7 +19,7 @@ module.exports = {
 				"src/**/*"
 			],
 			browserslist: false,
-			"compilerOptions": "./tsconfig.json"
+			// "compilerOptions": "./tsconfig.json"
 		})
 	],
 	external: ['node-fetch', 'fs', 'mkdirp', 'path', 'util']
