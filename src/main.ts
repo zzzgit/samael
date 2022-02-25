@@ -1,5 +1,5 @@
-import utils from "./utils" 
+import utils from "./utils"
 
-let _hack={}
+const _hack = {}
 
-export { utils as default, _hack }
+export {utils as default, _hack}
