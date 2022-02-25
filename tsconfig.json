@@ -14,7 +14,7 @@
         "declaration": true,
         "outDir": "./built/lib/",
         "declarationDir": "./built/t/",
-        "declarationMap": true
+        "declarationMap": false
     },
     "include": [
         "src/**/*"

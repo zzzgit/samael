@@ -1,8 +1,8 @@
 /* eslint-env node */
 const path = require("path")
+// const babel = require("rollup-plugin-babel")
 const pkg = require("./package.json")
-const ts = require("rollup-plugin-ts")
-// const ts = require("rollup-plugin-typescript2")
+const ts = require("@rollup/plugin-typescript")
 
 
 module.exports = {
@@ -15,13 +15,9 @@ module.exports = {
 	},
 	plugins: [
 		ts({
-			"include": [
-				"src/**/*"
-			],
-			browserslist: false,
-			// "compilerOptions": "./tsconfig.json"
-		})
+			cacheDir: "./.rts2_cache",
+			compilerOptions: {"module": "ESNext"},
+		}),
 	],
-	external: ['node-fetch', 'fs', 'mkdirp', 'path', 'util']
-	// sourcemap: 'external',
+	external: ['node-fetch', 'fs', 'mkdirp', 'path', 'util'],
 }
