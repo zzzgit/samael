@@ -1,3 +1,4 @@
+
 /* eslint-env node */
 const path = require("path")
 const pkg = require("./package.json")
@@ -23,5 +24,5 @@ module.exports = {
 			},
 		}),
 	],
-	external: ['node-fetch', 'fs', 'mkdirp', 'path', 'util'],
+	// external: ['node-fetch', 'fs', 'mkdirp', 'path', 'util'],
 }

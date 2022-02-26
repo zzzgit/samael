@@ -19,7 +19,7 @@
   "dependencies": {
     "encoding": "^0.1.13",
     "mkdirp": "^1.0.4",
-    "node-fetch": "^3.2.0"
+    "node-fetch-commonjs": "^3.1.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",

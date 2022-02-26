@@ -1,13 +1,10 @@
 /* eslint-disable promise/prefer-await-to-callbacks */
-import fetch from "./fetch"
-// const fetch = require("./fetch")
+const nodeFetch = require("node-fetch-commonjs")
 
 const path = require("path")
 const {appendFile, writeFile, readFile} = require('fs').promises
 // 現有原生API可否替代這個lib？
 const ensurePath = require('mkdirp')
-
-const nodeFetch = import('node-fetch').then(({default: mdl}) => mdl).catch((err) => {throw err})
 
 
 const getQandR = (dividend, divisor) => {
@@ -64,11 +61,6 @@ const appendToFile = (file, str) => {
 
 const flipCoin = () => {
 	return randomInt(999) % 2
-}
-
-// unreasonable
-const importESModule2Common = (moduleName) => {
-	return import(moduleName).then(({default: mdl}) => mdl).catch((err) => {throw err})
 }
 
 const writeToFile = (file, str) => {
@@ -174,8 +166,6 @@ export default {
 	writeToFile,
 	readFromFile,
 	checkRedirect,
-	fetch,
-	importESModule2Common,
 	random,
 	randomInt,
 	shuffle,
