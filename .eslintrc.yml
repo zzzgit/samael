@@ -1,5 +1,5 @@
 parserOptions:
   sourceType: 'module'
   project: './tsconfig.json'
-extends: ['google','janus/basic','janus/unicorn','janus/node','janus/promise','janus/security','janus/array']
+extends: ["janus/unicorn", "janus/ts", "janus/node", "janus/promise", "janus/security", "janus/array"]
 ignorePatterns: [ "built/**/*", "test/**/*"]

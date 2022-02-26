@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.21",
+    "@typescript-eslint/parser": "^5.12.1",
     "eslint-config-google": "^0.14.0",
     "eslint-config-janus": "^1.1.22",
     "eslint-plugin-array-func": "^3.1.7",

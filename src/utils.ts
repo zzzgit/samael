@@ -13,7 +13,7 @@ const getQandR = (dividend, divisor) => {
 	return [quotient, remainder]
 }
 
-const formatTimeRange = (range) => {
+const formatTimeRange = (range: number) => {
 	const delta = Math.max(+range * 1000, 0)
 	let temp = getQandR(delta, 1000 * 60 * 60 * 24)
 	const days = Math.floor(temp[0])
@@ -48,7 +48,7 @@ const formatTimeRange = (range) => {
 	return seconds + "秒"
 }
 
-const appendToFile = (file, str) => {
+const appendToFile = (file:string, str:string) => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return appendFile(file, str, "utf8")
 	})
@@ -63,7 +63,7 @@ const flipCoin = () => {
 	return randomInt(999) % 2
 }
 
-const writeToFile = (file, str) => {
+const writeToFile = (file:string, str:string) => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return writeFile(file, str, "utf8")
 	})
@@ -74,7 +74,7 @@ const writeToFile = (file, str) => {
 		})
 }
 
-const readFromFile = (file) => {
+const readFromFile = (file:string) => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return readFile(file, "utf8")
 	})
@@ -100,7 +100,7 @@ const checkRedirect = (url) => {
 			return resp.headers.get("Location")
 		}
 		const err = new Error(resp.statusText)
-		err.code = resp.status
+		err["code"] = resp.status
 		throw err
 	})
 		.catch(function(err) {
@@ -108,7 +108,7 @@ const checkRedirect = (url) => {
 		})
 }
 
-const randomInt = (n, max) => {	// 一個參數，from 0 on, n is not included，兩個參數，all included
+const randomInt = (n: number, max?: number ) => {	// 一個參數，from 0 on, n is not included，兩個參數，all included
 	if (max == undefined) {
 		return Math.floor(Math.random() * n)
 	}
@@ -118,7 +118,7 @@ const randomInt = (n, max) => {	// 一個參數，from 0 on, n is not included�
 	return min + Math.floor(Math.random() * (max - min + 1))
 }
 
-const random = (n, max) => {
+const random = (n: number, max?: number  ) => {
 	if (max == undefined) {
 		return Math.random() * n
 	}
@@ -126,7 +126,7 @@ const random = (n, max) => {
 	return min + Math.random() * (max - min)
 }
 
-const shuffle = (arr) => {
+const shuffle = (arr: any[]) => {
 	const n = arr.length
 	for (let i = 0, len = arr.length - 1; i < len; i++) {
 		const t = i + random(n - i - 1) + 1
@@ -136,7 +136,7 @@ const shuffle = (arr) => {
 	}
 }
 
-const factorial = (num) => {
+const factorial = (num: number) => {
 	let result = num
 	if (num < 0) {
 		return -1
