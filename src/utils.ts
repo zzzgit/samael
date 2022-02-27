@@ -1,13 +1,12 @@
-/* eslint-disable promise/prefer-await-to-callbacks */
-const nodeFetch = require("node-fetch-commonjs")
+import * as path from "path"
+import * as ensurePath from "mkdirp"
+import  { promises} from "fs"
 
-const path = require("path")
-const {appendFile, writeFile, readFile} = require('fs').promises
-// 現有原生API可否替代這個lib？
-const ensurePath = require('mkdirp')
+const { appendFile, writeFile, readFile } = promises
 
 
-const getQandR = (dividend, divisor) => {
+
+const getQandR = (dividend: number, divisor:number) => {
 	const remainder = dividend % divisor
 	const quotient = (dividend - remainder) / divisor
 	return [quotient, remainder]
@@ -52,7 +51,7 @@ const appendToFile = (file:string, str:string) => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return appendFile(file, str, "utf8")
 	})
-		.catch((e) => {
+		.catch((e:Error) => {
 			if (e) {
 				throw e
 			}
@@ -67,7 +66,7 @@ const writeToFile = (file:string, str:string) => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return writeFile(file, str, "utf8")
 	})
-		.catch((e) => {
+		.catch((e:Error) => {
 			if (e) {
 				throw e
 			}
@@ -78,35 +77,35 @@ const readFromFile = (file:string) => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return readFile(file, "utf8")
 	})
-		.catch((e) => {
+		.catch((e:Error) => {
 			if (e) {
 				throw e
 			}
 		})
 }
 
-const checkRedirect = (url) => {
-	console.log(`[samael][check-redirect]: ${url}`)
-	return nodeFetch(url, {
-		headers: {
-			'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36',
-		},
-		redirect: 'manaul',
-	}).then((resp) => {
-		if (resp.ok) {
-			return url
-		}
-		if (resp.status === 301) {
-			return resp.headers.get("Location")
-		}
-		const err = new Error(resp.statusText)
-		err["code"] = resp.status
-		throw err
-	})
-		.catch(function(err) {
-			throw err
-		})
-}
+// const checkRedirect = (url) => {
+// 	console.log(`[samael][check-redirect]: ${url}`)
+// 	return nodeFetch(url, {
+// 		headers: {
+// 			'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.65 Safari/537.36',
+// 		},
+// 		redirect: 'manaul',
+// 	}).then((resp) => {
+// 		if (resp.ok) {
+// 			return url
+// 		}
+// 		if (resp.status === 301) {
+// 			return resp.headers.get("Location")
+// 		}
+// 		const err = new Error(resp.statusText)
+// 		err["code"] = resp.status
+// 		throw err
+// 	})
+// 		.catch(function(err) {
+// 			throw err
+// 		})
+// }
 
 const randomInt = (n: number, max?: number ) => {	// 一個參數，from 0 on, n is not included，兩個參數，all included
 	if (max == undefined) {
@@ -165,7 +164,7 @@ export default {
 	appendToFile,
 	writeToFile,
 	readFromFile,
-	checkRedirect,
+	// checkRedirect,
 	random,
 	randomInt,
 	shuffle,

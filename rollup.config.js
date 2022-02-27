@@ -1,5 +1,3 @@
-
-/* eslint-env node */
 const path = require("path")
 const pkg = require("./package.json")
 // const ts = require("@rollup/plugin-typescript")
@@ -24,5 +22,4 @@ module.exports = {
 			},
 		}),
 	],
-	// external: ['node-fetch', 'fs', 'mkdirp', 'path', 'util'],
 }
