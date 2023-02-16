@@ -1,18 +1,17 @@
 import * as path from "path"
 import * as ensurePath from "mkdirp"
-import  { promises} from "fs"
+import {promises} from "fs"
 
-const { appendFile, writeFile, readFile } = promises
+const {appendFile, writeFile, readFile} = promises
 
 
-
-const getQandR = (dividend: number, divisor:number) => {
+const getQandR = (dividend: number, divisor:number): number[] => {
 	const remainder = dividend % divisor
 	const quotient = (dividend - remainder) / divisor
 	return [quotient, remainder]
 }
 
-const formatTimeRange = (range: number) => {
+const formatTimeRange = (range: number): string => {
 	const delta = Math.max(+range * 1000, 0)
 	let temp = getQandR(delta, 1000 * 60 * 60 * 24)
 	const days = Math.floor(temp[0])
@@ -47,7 +46,7 @@ const formatTimeRange = (range: number) => {
 	return seconds + "秒"
 }
 
-const appendToFile = (file:string, str:string) => {
+const appendToFile = (file: string, str: string): Promise<void> => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return appendFile(file, str, "utf8")
 	})
@@ -58,11 +57,11 @@ const appendToFile = (file:string, str:string) => {
 		})
 }
 
-const flipCoin = () => {
+const flipCoin = (): number => {
 	return randomInt(999) % 2
 }
 
-const writeToFile = (file:string, str:string) => {
+const writeToFile = (file:string, str:string): Promise<void> => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return writeFile(file, str, "utf8")
 	})
@@ -73,7 +72,7 @@ const writeToFile = (file:string, str:string) => {
 		})
 }
 
-const readFromFile = (file:string) => {
+const readFromFile = (file: string): Promise<string | void> => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return readFile(file, "utf8")
 	})
@@ -107,7 +106,7 @@ const readFromFile = (file:string) => {
 // 		})
 // }
 
-const randomInt = (n: number, max?: number ) => {	// 一個參數，from 0 on, n is not included，兩個參數，all included
+const randomInt = (n: number, max?: number) : number=> {	// 一個參數，from 0 on, n is not included，兩個參數，all included
 	if (max == undefined) {
 		return Math.floor(Math.random() * n)
 	}
@@ -117,7 +116,7 @@ const randomInt = (n: number, max?: number ) => {	// 一個參數，from 0 on, n
 	return min + Math.floor(Math.random() * (max - min + 1))
 }
 
-const random = (n: number, max?: number  ) => {
+const random = (n: number, max?: number): number=> {
 	if (max == undefined) {
 		return Math.random() * n
 	}
@@ -125,7 +124,7 @@ const random = (n: number, max?: number  ) => {
 	return min + Math.random() * (max - min)
 }
 
-const shuffle = (arr: any[]) => {
+const shuffle = (arr: any[]): void => {
 	const n = arr.length
 	for (let i = 0, len = arr.length - 1; i < len; i++) {
 		const t = i + random(n - i - 1) + 1
@@ -135,7 +134,7 @@ const shuffle = (arr: any[]) => {
 	}
 }
 
-const factorial = (num: number) => {
+const factorial = (num: number): number => {
 	let result = num
 	if (num < 0) {
 		return -1
@@ -150,7 +149,7 @@ const factorial = (num: number) => {
 	return result
 }
 
-const getCounter = () =>{
+const getCounter = (): ()=>number =>{
 	let counter = 0
 	return function() {
 		counter += 1
