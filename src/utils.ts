@@ -11,7 +11,7 @@ const {appendFile, writeFile, readFile} = promises
  * @param {number} divisor
  * @return {number[]} an array of two elements representing quotient and remainder
  */
-export const getQandR = (dividend: number, divisor:number): number[] => {
+const getQandR = (dividend: number, divisor:number): number[] => {
 	const remainder = dividend % divisor
 	const quotient = (dividend - remainder) / divisor
 	return [quotient, remainder]
@@ -21,7 +21,7 @@ export const getQandR = (dividend: number, divisor:number): number[] => {
  * @param {number} range time range in milliseconds
  * @return {string} formatted time range
  */
-export const formatTimeRange = (range: number): string => {
+const formatTimeRange = (range: number): string => {
 	const delta = Math.max(+range * 1000, 0)
 	let temp = getQandR(delta, 1000 * 60 * 60 * 24)
 	const days = Math.floor(temp[0])
@@ -61,7 +61,7 @@ export const formatTimeRange = (range: number): string => {
  * @param {string} str  The text to append
  * @return {string} A promise
  */
-export const appendToFile = (file: string, str: string): Promise<void> => {
+const appendToFile = (file: string, str: string): Promise<void> => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return appendFile(file, str, "utf8")
 	})
@@ -75,7 +75,7 @@ export const appendToFile = (file: string, str: string): Promise<void> => {
  * Flip a coin to get 0 or 1
  * @return {number} 0 or 1
  */
-export const flipCoin = (): number => {
+const flipCoin = (): number => {
 	return random(999) % 2
 }
 /**
@@ -84,7 +84,7 @@ export const flipCoin = (): number => {
  * @param {string} str the content to write in the form of a string
  * @return {Promise} a pormise
  */
-export const writeToFile = (file:string, str:string): Promise<void> => {
+const writeToFile = (file:string, str:string): Promise<void> => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return writeFile(file, str, "utf8")
 	})
@@ -99,7 +99,7 @@ export const writeToFile = (file:string, str:string): Promise<void> => {
  * @param {string} file the file to read
  * @return {Promise<string | void>} a promise which solves with the contents of the file
  */
-export const readFromFile = (file: string): Promise<string | void> => {
+const readFromFile = (file: string): Promise<string | void> => {
 	return ensurePath(path.resolve(file, "../")).then(() => {
 		return readFile(file, "utf8")
 	})
@@ -115,7 +115,7 @@ export const readFromFile = (file: string): Promise<string | void> => {
  * @param {number} isFloating Specify returning a floating-point number.
  * @return {number} Returns the random number.
  */
-export const random = (n: number, isFloating: boolean = false) : number=> {
+const random = (n: number, isFloating: boolean = false) : number=> {
 	if (isFloating) {
 		return Math.random() * n
 	}
@@ -128,7 +128,7 @@ export const random = (n: number, isFloating: boolean = false) : number=> {
  * @param  {boolean} isFloating Specify returning a floating-point number.
  * @return  {number} Returns the random number.
  */
-export const range = (min: number, max: number, isFloating:boolean = false) : number=> {
+const range = (min: number, max: number, isFloating:boolean = false) : number=> {
 	if (!isFloating) {
 		min = Math.ceil(min)
 		max = Math.floor(max)
@@ -143,7 +143,7 @@ export const range = (min: number, max: number, isFloating:boolean = false) : nu
  * Suffles an array. This will under the hood use the random method.
  * @param {any[]} arr the array to shuffle
  */
-export const shuffle = (arr: any[]): void => {
+const shuffle = (arr: any[]): void => {
 	const n = arr.length
 	for (let i = 0, len = arr.length - 1; i < len; i++) {
 		const t = i + random(n - i - 1, false) + 1
@@ -157,7 +157,7 @@ export const shuffle = (arr: any[]): void => {
  * @param {number} num
  * @return {number} the result
  */
-export const factorial = (num: number): number => {
+const factorial = (num: number): number => {
 	let result = num
 	if (num < 0) {
 		return -1
@@ -175,10 +175,23 @@ export const factorial = (num: number): number => {
  * Generates a counter closure
  * @return {number} the counter closure
  */
-export const getCounter = (): ()=>number =>{
+const getCounter = (): ()=>number =>{
 	let counter = 0
 	return function() {
 		counter += 1
 		return counter
 	}
+}
+
+export {
+	formatTimeRange,
+	appendToFile,
+	writeToFile,
+	readFromFile,
+	random,
+	range,
+	shuffle,
+	flipCoin,
+	factorial,
+	getCounter,
 }
