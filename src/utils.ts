@@ -190,10 +190,9 @@ export default {
 	readFromFile,
 	// checkRedirect,
 	random,
-	randomInt: random,
+	range,
 	shuffle,
 	flipCoin,
 	factorial,
 	getCounter,
-	rangeInt: range,
 }
