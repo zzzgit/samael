@@ -1,6 +1,27 @@
-import utils from "./utils"
+import {
+	formatTimeRange,
+	appendToFile,
+	writeToFile,
+	readFromFile,
+	random,
+	range,
+	shuffle,
+	flipCoin,
+	factorial,
+	getCounter,
+} from "./utils"
 
-const _hack = {}
+export const _hack = {}
 
-export {utils as default, _hack}
-
+export default {
+	formatTimeRange,
+	appendToFile,
+	writeToFile,
+	readFromFile,
+	random,
+	range,
+	shuffle,
+	flipCoin,
+	factorial,
+	getCounter,
+}
