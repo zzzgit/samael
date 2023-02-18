@@ -110,7 +110,7 @@ const readFromFile = (file: string): Promise<string | void> => {
 		})
 }
 /**
- * Produces a random number between 0 which is not included and upper bound which is included. If isFloating is true, a floating-point number is returned instead of an integer. By default, the isFloating property is false.
+ * Produces a random number between 0 which is included and upper bound which is not included. If isFloating is true, a floating-point number is returned instead of an integer. By default, the isFloating property is false.
  * @param {number} n  Upper bound of the range
  * @param {number} isFloating Specify returning a floating-point number.
  * @return {number} Returns the random number.
@@ -182,6 +182,16 @@ const getCounter = (): ()=>number =>{
 		return counter
 	}
 }
+/**
+ * Retrun true by a chance of n/m where n and m are integer numbers.
+ * @param {number} n numerator
+ * @param {number} m denominator
+ * @return {boolean}
+ */
+const chance = (n: number, m: number): boolean => {
+	const randomN = random(m, false)
+	return randomN < Math.trunc(n)
+}
 
 export {
 	formatTimeRange,
@@ -194,4 +204,5 @@ export {
 	flipCoin,
 	factorial,
 	getCounter,
+	chance,
 }
