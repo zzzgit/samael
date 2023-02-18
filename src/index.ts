@@ -1,4 +1,7 @@
-import {
+
+export const _hack = {}
+
+export {
 	formatTimeRange,
 	appendToFile,
 	writeToFile,
@@ -10,18 +13,3 @@ import {
 	factorial,
 	getCounter,
 } from "./utils"
-
-export const _hack = {}
-
-export default {
-	formatTimeRange,
-	appendToFile,
-	writeToFile,
-	readFromFile,
-	random,
-	range,
-	shuffle,
-	flipCoin,
-	factorial,
-	getCounter,
-}
