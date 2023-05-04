@@ -1,5 +1,5 @@
 import * as path from "path"
-import * as ensurePath from "mkdirp"
+import {mkdirp as ensurePath} from "mkdirp"
 import {promises} from "fs"
 
 
