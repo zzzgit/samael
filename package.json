@@ -3,8 +3,8 @@
   "version": "3.0.8",
   "description": "utils for node.js",
   "type": "commonjs",
-  "main": "built/lib/index.js",
-  "types": "built/t/index.d.ts",
+  "main": "built/lib/src/index.js",
+  "types": "built/t/src/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",

@@ -217,11 +217,11 @@ export {
 	writeToFile,
 	readFromFile,
 	random,
-	wait,
 	range,
 	shuffle,
 	flipCoin,
 	factorial,
 	getCounter,
 	chance,
+	wait,
 }
