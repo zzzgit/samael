@@ -19,7 +19,7 @@ const getQandR = (dividend: number, divisor:number): number[]=> {
 }
 /**
  * Format a time range into the form of "x天x時x分x秒".
- * @param {number} range time range in milliseconds
+ * @param {number} range time range in seconds
  * @return {string} formatted time range
  */
 const formatTimeRange = (range: number): string=> {
@@ -134,7 +134,7 @@ const range = (min: number, max: number, isFloating:boolean = false) : number=> 
 		min = Math.ceil(min)
 		max = Math.floor(max)
 	}
-	let delta = Math.random() * (max - min + 1)
+	let delta = Math.random() * (max - min + (isFloating ? 0 : 1))
 	if (!isFloating){
 		delta = Math.trunc(delta)
 	}
@@ -145,12 +145,16 @@ const range = (min: number, max: number, isFloating:boolean = false) : number=> 
  * @param {any[]} arr the array to shuffle
  */
 
-const shuffle = (arr: []): void=> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const shuffle = (arr: any[]): void=> {
 	const n = arr.length
 	for (let i = 0, len = arr.length - 1; i < len; i++){
 		const t = i + random(n - i - 1, false) + 1
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const temp = arr[i]
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		arr[i] = arr[t]
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		arr[t] = temp
 	}
 }
@@ -194,6 +198,18 @@ const chance = (n: number, m: number): boolean=> {
 	const randomN = random(m, false)
 	return randomN < Math.trunc(n)
 }
+/**
+ * Wait for a period of time
+ * @param {number} milliseconds 
+ * @returns true after a period of time
+ */
+const wait = (milliseconds: number): Promise<boolean>=> {
+	return new Promise((resolve)=> {
+		setTimeout(()=> {
+			resolve(true)
+		}, milliseconds)
+	})
+}
 
 export {
 	formatTimeRange,
@@ -201,6 +217,7 @@ export {
 	writeToFile,
 	readFromFile,
 	random,
+	wait,
 	range,
 	shuffle,
 	flipCoin,
