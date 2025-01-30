@@ -1,7 +1,7 @@
 import * as path from 'path'
 import { mkdirp as ensurePath } from 'mkdirp'
 import { promises } from 'fs'
-import os from 'os'
+import * as os from 'os'
 
 const {
 	appendFile, writeFile, readFile,
