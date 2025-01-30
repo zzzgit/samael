@@ -1,6 +1,6 @@
 {
   "name": "samael",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "description": "utils for node.js",
   "type": "commonjs",
   "main": "built/lib/src/index.js",
