@@ -1,6 +1,7 @@
 import * as path from 'path'
 import { mkdirp as ensurePath } from 'mkdirp'
 import { promises } from 'fs'
+import os from 'os'
 
 const {
 	appendFile, writeFile, readFile,
@@ -211,6 +212,66 @@ const wait = (milliseconds: number): Promise<boolean>=> {
 	})
 }
 
+/**
+ * Get the data directory for the app
+ * @param appName app name
+ * @returns 
+ */
+const getDataDir = (appName: string)=> {
+	const homeDir = os.homedir()
+	switch (process.platform){
+	case 'linux':
+		return path.join(homeDir, '.local', 'share', appName)
+	case 'darwin':
+		return path.join(homeDir, 'Library', 'Application Support', appName)
+	case 'win32':
+		return path.join(process.env.APPDATA + '', appName)
+	default:
+		throw new Error('Unsupported platform: ' + process.platform)
+	}
+}
+
+/**
+ * Get the config directory for the app
+ * @param appName app name
+ * @returns 
+ */
+const getConfigDir = (appName: string)=> {
+	const homeDir = os.homedir()
+	switch (process.platform){
+	case 'linux':
+		return path.join(homeDir, '.config', appName)
+	case 'darwin':
+		return path.join(homeDir, 'Library', 'Preferences', appName)
+	case 'win32':
+		return path.join(homeDir, 'AppData', 'Local')
+	default:
+		throw new Error('Unsupported platform: ' + process.platform)
+	}
+}
+
+/**
+ * Get the username of the current OS user
+ * @returns the username of the current user
+ */
+const getUsername = ()=> {
+	try {
+		const userInfo = os.userInfo()
+		return userInfo.username
+	} catch (error){
+		console.error('Error getting username via os.userInfo():', error)
+		switch (process.platform){
+		case 'win32':
+			return process.env.USERNAME || process.env.USERPROFILE?.split('\\').pop() || 'Unknown User'
+		case 'darwin':
+		case 'linux':
+			return process.env.USER || process.env.LOGNAME || 'Unknown User'
+		default:
+			return 'Unknown User'
+		}
+	}
+}
+
 export {
 	formatTimeRange,
 	appendToFile,
@@ -224,4 +285,7 @@ export {
 	getCounter,
 	chance,
 	wait,
+	getDataDir,
+	getUsername,
+	getConfigDir,
 }
